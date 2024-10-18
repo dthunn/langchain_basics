@@ -25,6 +25,11 @@ faiss-cpu = "*"
 streamlit = "*"
 openai = "*"
 langchain-groq = "*"
+langserve = "*"
+fastapi = "*"
+uvicorn = "*"
+langchain-chroma = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 
