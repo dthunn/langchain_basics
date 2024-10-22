@@ -30,6 +30,10 @@ fastapi = "*"
 uvicorn = "*"
 langchain-chroma = "*"
 sqlalchemy = "*"
+validators = "*"
+datasets = "*"
+cassio = "*"
+pypdf2 = "*"
 
 [dev-packages]
 

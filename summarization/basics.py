@@ -86,7 +86,7 @@ summary_chain = load_summarize_chain(
     verbose=True
 )
 
-output = summary_chain.run(final_documents)
+# output = summary_chain.run(final_documents)
 
 chain = load_summarize_chain(
     llm=llm,

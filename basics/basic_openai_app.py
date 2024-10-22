@@ -18,7 +18,7 @@ docs = loader.load()
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=200)
 documents = text_splitter.split_documents(docs)
 
-embeddings=OpenAIEmbeddings()
+embeddings = OpenAIEmbeddings()
 
 vector_store = FAISS.from_documents(documents,embeddings)
 
