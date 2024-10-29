@@ -35,6 +35,8 @@ datasets = "*"
 cassio = "*"
 pypdf2 = "*"
 pinecone-text = "*"
+langchain-experimental = "*"
+neo4j = "*"
 
 [dev-packages]
 
