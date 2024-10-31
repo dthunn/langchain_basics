@@ -50,7 +50,7 @@ while True:
         print("Good Bye")
         break
     for event in graph.stream({'messages':("user",user_input)}):
-      print(event.values())
-      for value in event.values():
-        print(value['messages'])
-        print("Assistant:",value["messages"].content)
+        print(event.values())
+        for value in event.values():
+          print(value['messages'])
+          print("Assistant:", value["messages"].content)
