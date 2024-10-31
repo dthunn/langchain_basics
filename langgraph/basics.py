@@ -5,13 +5,14 @@ from typing_extensions import TypedDict
 from langgraph.graph import StateGraph, START,END
 from langgraph.graph.message import add_messages
 from IPython.display import Image, display
+from langchain_openai import ChatOpenAI
 
 
 load_dotenv()
 
 
-llm = ChatGroq(model_name="Gemma2-9b-It")
-
+# llm = ChatGroq(model_name="Gemma2-9b-It")
+llm = ChatOpenAI(model="gpt-3.5-turbo")
 
 class State(TypedDict):
   # Messages have the type "list". The `add_messages` function
@@ -24,7 +25,7 @@ graph_builder = StateGraph(State)
 
 
 def chatbot(state: State):
-  return {"messages":llm.invoke(state['messages'])}
+    return {"messages": llm.invoke(state['messages'])}
 
 
 graph_builder.add_node("chatbot",chatbot)
@@ -38,16 +39,16 @@ graph = graph_builder.compile()
 
 
 try:
-  display(Image(graph.get_graph().draw_mermaid_png()))
+    display(Image(graph.get_graph().draw_mermaid_png()))
 except Exception:
-  pass
+    pass
 
 
 while True:
     user_input=input("User: ")
     if user_input.lower() in ["quit","q"]:
-      print("Good Bye")
-      break
+        print("Good Bye")
+        break
     for event in graph.stream({'messages':("user",user_input)}):
       print(event.values())
       for value in event.values():
