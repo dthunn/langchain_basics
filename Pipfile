@@ -37,6 +37,9 @@ pypdf2 = "*"
 pinecone-text = "*"
 langchain-experimental = "*"
 neo4j = "*"
+langgraph = "*"
+langsmith = "*"
+ipython = "*"
 
 [dev-packages]
 
