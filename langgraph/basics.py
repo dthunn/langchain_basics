@@ -45,11 +45,11 @@ except Exception:
 
 
 while True:
-    user_input=input("User: ")
+    user_input = input("User: ")
     if user_input.lower() in ["quit","q"]:
         print("Good Bye")
         break
-    for event in graph.stream({'messages':("user",user_input)}):
+    for event in graph.stream({'messages': ("user", user_input)}):
         print(event.values())
         for value in event.values():
           print(value['messages'])
