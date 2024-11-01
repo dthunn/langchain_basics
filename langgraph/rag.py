@@ -222,8 +222,6 @@ for output in app.stream(inputs):
 pprint(value['documents'][0].dict()['metadata']['description'])
 
 
-from pprint import pprint
-
 # Run
 inputs = {
     "question": "Avengers"
