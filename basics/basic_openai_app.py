@@ -5,7 +5,6 @@ from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_community.vectorstores import FAISS
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.documents import Document
 from langchain.chains.retrieval import create_retrieval_chain
 
 
@@ -20,7 +19,7 @@ documents = text_splitter.split_documents(docs)
 
 embeddings = OpenAIEmbeddings()
 
-vector_store = FAISS.from_documents(documents,embeddings)
+vector_store = FAISS.from_documents(documents, embeddings)
 
 ## Query From a vector db
 query = "LangSmith has two usage limits: total traces and extended"
@@ -28,7 +27,7 @@ result = vector_store.similarity_search(query)
 
 llm = ChatOpenAI()
 
-prompt=ChatPromptTemplate.from_template(
+prompt = ChatPromptTemplate.from_template(
     """
 Answer the following question based only on the provided context:
 <context>
@@ -41,6 +40,5 @@ Answer the following question based only on the provided context:
 document_chain = create_stuff_documents_chain(llm, prompt)
 retrieval_chain = create_retrieval_chain(vector_store.as_retriever(), document_chain)
 
-response=retrieval_chain.invoke({"input":"LangSmith has two usage limits: total traces and extended"})
+response = retrieval_chain.invoke({"input":"LangSmith has two usage limits: total traces and extended"})
 print(response)
-

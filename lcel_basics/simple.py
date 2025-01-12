@@ -10,12 +10,12 @@ load_dotenv()
 
 model = ChatGroq(model="Gemma2-9b-It")
 
-# messages = [
-#     SystemMessage(content="Translate the following from English to French"),
-#     HumanMessage(content="Hello How are you?")
-# ]
+messages = [
+    SystemMessage(content="Translate the following from English to French"),
+    HumanMessage(content="Hello How are you?")
+]
 
-# result = model.invoke(messages)
+result = model.invoke(messages)
 
 parser = StrOutputParser()
 
