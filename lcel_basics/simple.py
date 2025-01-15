@@ -1,6 +1,4 @@
 from dotenv import load_dotenv
-import openai
-from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage,SystemMessage
 from langchain_core.output_parsers import StrOutputParser
@@ -28,5 +26,7 @@ prompt=ChatPromptTemplate.from_messages(
 chain = prompt | model | parser
 
 result = chain.invoke({"language":"French","text":"Hello"})
+
+# result.to_messages()
 
 print(result)

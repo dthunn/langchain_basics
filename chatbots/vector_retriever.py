@@ -38,7 +38,7 @@ llm = ChatGroq(model="Llama3-8b-8192")
 
 embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
-vectorstore=Chroma.from_documents(documents,embedding=embeddings)
+vectorstore = Chroma.from_documents(documents,embedding=embeddings)
 
 print(vectorstore.similarity_search("cat"))
 
