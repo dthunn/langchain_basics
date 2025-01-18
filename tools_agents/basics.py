@@ -10,14 +10,12 @@ from dotenv import load_dotenv
 from langchain import hub
 from langchain.agents import create_openai_tools_agent
 from langchain.agents import AgentExecutor
-import openai
 
 
 load_dotenv()
 
 api_wrapper_wiki = WikipediaAPIWrapper(top_k_results=1, doc_content_chars_max=250)
 wiki = WikipediaQueryRun(api_wrapper=api_wrapper_wiki)
-
 
 api_wrapper_arxiv = ArxivAPIWrapper(top_k_results=1, doc_content_chars_max=250)
 arxiv = ArxivQueryRun(api_wrapper=api_wrapper_arxiv)
@@ -30,15 +28,15 @@ retriever = vector_db.as_retriever()
 
 retriever_tool = create_retriever_tool(retriever, "langsmith-search", "Search any information about Langsmith ")
 
-tools = [wiki,arxiv,retriever_tool]
+tools = [wiki,arxiv, retriever_tool]
 
-llm=ChatGroq(model_name="Llama3-8b-8192")
+llm = ChatGroq(model_name="Llama3-8b-8192")
 
 prompt = hub.pull("hwchase17/openai-functions-agent")
 
-agent=create_openai_tools_agent(llm, tools, prompt)
+agent = create_openai_tools_agent(llm, tools, prompt)
 
-agent_executor=AgentExecutor(agent=agent,tools=tools,verbose=True)
+agent_executor = AgentExecutor(agent=agent,tools=tools,verbose=True)
 
 # result = agent_executor.invoke({"input":" Tell me about Langsmith"})
 
