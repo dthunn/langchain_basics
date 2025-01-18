@@ -13,15 +13,15 @@ load_dotenv()
 
 model = ChatGroq(model="Gemma2-9b-It")
 
-# model.invoke(
-#     [
-#         HumanMessage(content="Hi , My name is Dylan and I am a Software Engineer"),
-#         AIMessage(content="Hello Dylan! It's nice to meet you. \n\nAs a Software Engineer, what kind of projects are you working on these days? \n\nI'm always eager to learn more about the exciting work being done in the field of AI.\n"),
-#         HumanMessage(content="Hey What's my name and what do I do?")
-#     ]
-# )
+model.invoke(
+    [
+        HumanMessage(content="Hi , My name is Dylan and I am a Software Engineer"),
+        AIMessage(content="Hello Dylan! It's nice to meet you. \n\nAs a Software Engineer, what kind of projects are you working on these days? \n\nI'm always eager to learn more about the exciting work being done in the field of AI.\n"),
+        HumanMessage(content="Hey What's my name and what do I do?")
+    ]
+)
 
-store={}
+store = {}
 
 def get_session_history(session_id:str) -> BaseChatMessageHistory:
     if session_id not in store:
@@ -137,7 +137,7 @@ messages = [
     AIMessage(content="yes!"),
 ]
 
-chain=(
+chain = (
     RunnablePassthrough.assign(messages=itemgetter("messages") | trimmer)
     | prompt
     | model
